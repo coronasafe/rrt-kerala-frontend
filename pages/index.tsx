@@ -3,20 +3,23 @@ import Head from "next/head";
 import React from "react";
 
 import Search from "../components/search";
-import { generateSearchList, getLsgs } from "../lib/utils";
+import { generateSearchList, getLsgs, useLSGSelected } from "../lib/utils";
 
 export default function IndexPage({
   searchList,
 }: InferGetStaticPropsType<typeof getStaticProps>) {
+  const [selected, setSelected] = useLSGSelected(null);
   return (
     <>
       <Head>
         <title>RRT Directory</title>
+        <meta name="description" content="Kerala RRT Directory" />
       </Head>
-      <div className="container flex flex-col">
-        <h1 className="text-5xl text-center mb-10 font-bold">RRT DIRECTORY</h1>
-        <Search searchList={searchList} />
-      </div>
+      <Search
+        searchList={searchList}
+        selected={selected}
+        setSelected={setSelected}
+      />
     </>
   );
 }

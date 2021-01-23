@@ -18,7 +18,7 @@ type WardInfoProps = {
 
 export default function WardInfo({ district, lsg, type, ward }: WardInfoProps) {
   return (
-    <table className="table-auto border-separate">
+    <table className="mt-6 table-auto border-separate dark:bg-bunker-600 border border-bunker-600 dark:border-transparent rounded-lg p-2 w-full bg-white text-xs sm:text-base">
       <tbody>
         <tr>
           <td>Ward No</td>

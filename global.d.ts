@@ -11,6 +11,7 @@ declare namespace RRT {
   };
 
   type WardType = {
+    name: string;
     wardNo: number;
     medicalOfficer: ContactType;
     ashaWorker: ContactType;
@@ -23,7 +24,7 @@ declare namespace RRT {
     District = "District",
     Grama = "Grama",
     Block = "Block",
-    Muncipality = "Muncipality",
+    Municipality = "Municipality",
     Corporation = "Corporation",
   }
 

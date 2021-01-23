@@ -1,9 +1,11 @@
 import type { AppProps } from "next/app";
-import Head from "next/head";
 import Router from "next/router";
 import NProgress from "nprogress";
 import React from "react";
+import { ThemeProvider } from "use-theme-switcher";
 
+import Footer from "../components/footer";
+import Header from "../components/header";
 import "../styles/index.css";
 
 Router.events.on("routeChangeStart", () => {
@@ -14,18 +16,14 @@ Router.events.on("routeChangeError", () => NProgress.done());
 
 export default function MyApp({ Component, pageProps }: AppProps): JSX.Element {
   return (
-    <div>
-      <Head>
-        <meta name="description" content="RRT Directory." />
-        <link
-          rel="icon"
-          href="https://cdn.coronasafe.network/care-manifest/images/icons/icon-192x192.png"
-        />
-      </Head>
-
-      <main className="bg-gray-50 dark:bg-bunker-800 flex justify-center min-h-screen dark:text-gray-200 py-10 px-4">
-        <Component {...pageProps} />
-      </main>
-    </div>
+    <ThemeProvider defaultDarkTheme="dark">
+      <div className="bg-gray-50 dark:bg-bunker-800 min-h-screen dark:text-gray-200 p-4 flex flex-col transition-colors duration-200 ease-linear">
+        <Header />
+        <main>
+          <Component {...pageProps} />
+        </main>
+        <Footer />
+      </div>
+    </ThemeProvider>
   );
 }
