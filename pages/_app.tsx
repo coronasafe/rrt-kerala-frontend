@@ -1,8 +1,6 @@
 import type { AppProps } from "next/app";
 import Router from "next/router";
 import NProgress from "nprogress";
-import React from "react";
-import { ThemeProvider } from "use-theme-switcher";
 
 import Footer from "../components/footer";
 import Header from "../components/header";
@@ -16,14 +14,12 @@ Router.events.on("routeChangeError", () => NProgress.done());
 
 export default function MyApp({ Component, pageProps }: AppProps): JSX.Element {
   return (
-    <ThemeProvider defaultDarkTheme="dark">
-      <div className="bg-gray-50 dark:bg-bunker-800 min-h-screen dark:text-gray-200 p-4 flex flex-col transition-colors duration-200 ease-linear">
-        <Header />
-        <main>
-          <Component {...pageProps} />
-        </main>
-        <Footer />
-      </div>
-    </ThemeProvider>
+    <div className="flex flex-col bg-gray-50 dark:bg-bunker-800 min-h-screen dark:text-gray-200 transition-colors duration-200 ease-linear overflow-x-hidden">
+      <Header />
+      <main className="flex flex-col flex-1 mx-4">
+        <Component {...pageProps} />
+      </main>
+      <Footer />
+    </div>
   );
 }

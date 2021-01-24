@@ -1,15 +1,14 @@
 import { InferGetStaticPropsType } from "next";
 import Head from "next/head";
+import { useMemo } from "react";
 
 import Search from "../../../../components/search";
 import WardInfo from "../../../../components/wardinfo";
 import {
-  generateSearchList,
   genLsgTitleFull,
   getLsgs,
   parametrify,
   ParamsType,
-  useLSGSelected,
 } from "../../../../lib/utils";
 
 export default function WardPage({
@@ -17,27 +16,23 @@ export default function WardPage({
   lsg,
   type,
   ward,
-  searchList,
   initSelected,
+  lsgs,
 }: InferGetStaticPropsType<typeof getStaticProps>) {
-  const [selected, setSelected] = useLSGSelected(initSelected);
+  const title = useMemo(() => genLsgTitleFull(initSelected), [initSelected]);
 
   return (
     <>
       <Head>
         <title>
-          RRT Directory - {ward.wardNo}. {ward.name},{initSelected.name}
+          RRT Directory - {ward.wardNo}. {ward.name}, {title}
         </title>
         <meta
           name="description"
-          content={`RRT Directory of ${ward.wardNo}. ${ward.name},${initSelected.name}, Kerala`}
+          content={`RRT Directory of ${ward.wardNo}. ${ward.name},${title}, Kerala`}
         />
       </Head>
-      <Search
-        searchList={searchList}
-        selected={selected}
-        setSelected={setSelected}
-      />
+      <Search lsgs={lsgs} showModal initSelected={initSelected} />
       <WardInfo district={district} lsg={lsg} type={type} ward={ward} />
     </>
   );
@@ -70,17 +65,14 @@ export async function getStaticProps({ params }: { params: ParamsType }) {
     );
   });
   const ward = lsg.wards.find((w) => w.wardNo === Number.parseInt(params.ward));
-  const searchList = generateSearchList(lsgs);
   return {
     props: {
       district: lsg.district,
       lsg: lsg.lsg,
       type: lsg.type,
       ward,
-      searchList,
-      initSelected: searchList.find(
-        (s) => s.name === genLsgTitleFull(lsg.lsg, lsg.type, lsg.district)
-      ),
+      lsgs,
+      initSelected: lsgs.find((s) => s === lsg),
     },
   };
 }

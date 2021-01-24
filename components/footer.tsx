@@ -1,29 +1,11 @@
 import CoronaSafeLogo from "../assets/coronaSafeLogo.svg";
-
-const links = [
-  {
-    href: "https://github.com/coronasafe/rrt-kerala-frontend",
-    label: "Github",
-  },
-  {
-    href: "https://github.com/coronasafe/rrt-kerala-frontend/issues",
-    label: "Issues",
-  },
-  {
-    href: "https://coronasafe.network/volunteer",
-    label: "Volunteer",
-  },
-  {
-    href: "mailto:info@coronasafe.network",
-    label: "Contact",
-  },
-];
+import { FOOTER_LINKS } from "../lib/constants";
 
 export default function Footer() {
   return (
-    <footer className="flex flex-col sticky inset-x-0 bottom-0 space-y-2 mt-auto">
-      <div className="flex text-sm space-x-2">
-        {links.map((l) => (
+    <footer className="flex flex-col space-y-2 my-4 mx-6">
+      <div className="flex text-xs xs:text-sm space-x-2">
+        {FOOTER_LINKS.map((l) => (
           <a key={l.label} className="shine" href={l.href}>
             {l.label}
           </a>
@@ -32,7 +14,7 @@ export default function Footer() {
       <div className="flex flex-col">
         <a
           href="https://coronasafe.network/"
-          className="inline-flex text-xs space-x-1 shine"
+          className="inline-flex text-xxs xs:text-xs space-x-1 shine"
         >
           <span>Copyright © 2021</span>
           <CoronaSafeLogo className="h-4" aria-hidden="true" />

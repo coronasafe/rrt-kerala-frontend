@@ -1,4 +1,4 @@
-import { WardWorker } from "../lib/constants";
+import { WARD_WORKER } from "../lib/constants";
 import { genLsgTitle } from "../lib/utils";
 
 type WardInfoProps = {
@@ -18,7 +18,7 @@ type WardInfoProps = {
 
 export default function WardInfo({ district, lsg, type, ward }: WardInfoProps) {
   return (
-    <table className="mt-6 table-auto border-separate dark:bg-bunker-600 border border-bunker-600 dark:border-transparent rounded-lg p-2 w-full bg-white text-xs sm:text-base">
+    <table className="mt-6 table-auto border-separate w-full text-xs sm:text-base card p-2">
       <tbody>
         <tr>
           <td>Ward No</td>
@@ -36,9 +36,9 @@ export default function WardInfo({ district, lsg, type, ward }: WardInfoProps) {
           <td>District</td>
           <td>{district}</td>
         </tr>
-        {Object.keys(WardWorker).map((k) => (
+        {Object.keys(WARD_WORKER).map((k) => (
           <tr key={k}>
-            <td>{WardWorker[k]}</td>
+            <td>{WARD_WORKER[k]}</td>
             <td>
               <tr>
                 <td>Name</td>
@@ -46,7 +46,9 @@ export default function WardInfo({ district, lsg, type, ward }: WardInfoProps) {
               </tr>
               <tr>
                 <td>Contact</td>
-                <td>{ward[k].contact}</td>
+                <td>
+                  <a href={`href:tel:${ward[k].contact}`}>{ward[k].contact}</a>
+                </td>
               </tr>
             </td>
           </tr>

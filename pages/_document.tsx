@@ -1,7 +1,7 @@
 import type { DocumentContext } from "next/document";
 import Document, { Html, Head, Main, NextScript } from "next/document";
-import React from "react";
-import { ThemeScriptTag } from "use-theme-switcher";
+
+import { ThemeScriptTag } from "../lib/theme";
 
 class MyDocument extends Document {
   static async getInitialProps(ctx: DocumentContext) {
@@ -28,7 +28,7 @@ class MyDocument extends Document {
           />
         </Head>
         <body className="antialiased">
-          <ThemeScriptTag defaultDarkTheme="dark" defaultLightTheme="light" />
+          <ThemeScriptTag />
           <Main />
           <NextScript />
         </body>

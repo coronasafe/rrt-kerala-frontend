@@ -23,7 +23,11 @@
 }
 
 .shine {
-  @apply hover:text-green-500 transition-colors ease-in-out duration-500;
+  @apply hover:text-green-500 transition-colors ease-in-out duration-200;
+}
+
+.card {
+  @apply bg-white dark:bg-bunker-600 border border-bunker-600 dark:border-transparent rounded-lg;
 }
 
 /* Start purging... */
